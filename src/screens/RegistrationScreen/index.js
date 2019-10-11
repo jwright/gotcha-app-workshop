@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 const RegistrationScreen = () => (
   <View style={styles.container}>
     <Text style={styles.header}>Player Registration</Text>
-    <RegistrationForm />
+    <RegistrationForm onRegistration={(registration) => console.log("Registered!", registration)} />
   </View>
 );
 
