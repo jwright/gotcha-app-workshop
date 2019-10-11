@@ -7,7 +7,7 @@ import Arenas from "../../components/Arenas";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
 
-const ArenaList = ({ navigation }) => {
+const ArenaListScreen = ({ navigation }) => {
   const { latitude, longitude } = navigation.getParam("location");
   const { loading, error, data } = useQuery(ArenasQuery, {
     variables: {
@@ -23,4 +23,8 @@ const ArenaList = ({ navigation }) => {
   return <Arenas arenas={data.arenas} />;
 };
 
-export default ArenaList;
+ArenaListScreen.navigationOptions = {
+  title: "Select An Arena",
+};
+
+export default ArenaListScreen;
