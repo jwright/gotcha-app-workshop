@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 
 import ArenasQuery from "../../queries/Arenas";
 
+import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
 
 const styles = StyleSheet.create({
@@ -24,7 +25,10 @@ const ArenaList = ({ navigation }) => {
   });
 
   if (loading) return <Loading />;
-  if (error) { console.log("ERROR"); }
+  if (error) return <ErrorMessage
+                     message="Error occured retrieving arenas. Try again later."
+                    />;
+
   if (data) { console.log("GOT DAT DATA", data); }
 
   return (
