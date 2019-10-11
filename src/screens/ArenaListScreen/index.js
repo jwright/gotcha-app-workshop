@@ -1,20 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { useQuery } from "@apollo/react-hooks";
 
 import ArenasQuery from "../../queries/Arenas";
 
+import Arenas from "../../components/Arenas";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 const ArenaList = ({ navigation }) => {
   const { latitude, longitude } = navigation.getParam("location");
@@ -29,13 +20,7 @@ const ArenaList = ({ navigation }) => {
                      message="Error occured retrieving arenas. Try again later."
                     />;
 
-  if (data) { console.log("GOT DAT DATA", data); }
-
-  return (
-    <View style={styles.container}>
-      <Text>Get them arenas for {latitude}/{longitude}</Text>
-    </View>
-  );
+  return <Arenas arenas={data.arenas} />;
 };
 
 export default ArenaList;
