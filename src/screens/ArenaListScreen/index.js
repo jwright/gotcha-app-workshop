@@ -1,19 +1,30 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useQuery } from "@apollo/react-hooks";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import ArenasQuery from "../../queries/Arenas";
 
-const ArenaList = () => (
-  <View style={styles.container}>
-    <Text>Get them arenas</Text>
-  </View>
-);
+import Arenas from "../../components/Arenas";
+import ErrorMessage from "../../components/ErrorMessage";
+import Loading from "../../components/Loading";
 
-export default ArenaList;
+const ArenaListScreen = ({ navigation }) => {
+  const { latitude, longitude } = navigation.getParam("location");
+  const { loading, error, data } = useQuery(ArenasQuery, {
+    variables: {
+        latitude, longitude, radius: 25
+      },
+  });
+
+  if (loading) return <Loading />;
+  if (error) return <ErrorMessage
+                     message="Error occured retrieving arenas. Try again later."
+                    />;
+
+  return <Arenas arenas={data.arenas} navigation={navigation} />;
+};
+
+ArenaListScreen.navigationOptions = {
+  title: "Select An Arena",
+};
+
+export default ArenaListScreen;
