@@ -8,11 +8,13 @@ import ArenaContext from "./context/ArenaContext";
 
 import ArenaListScreen from "./screens/ArenaListScreen";
 import HomeScreen from "./screens/HomeScreen";
+import MatchScreen from "./screens/MatchScreen";
 
 const Navigator = createSwitchNavigator(
   {
     ArenaList: { screen: ArenaListScreen },
     Home: { screen: HomeScreen },
+    Match: { screen: MatchScreen },
   },
   {
     initialRouteName: "Home",
