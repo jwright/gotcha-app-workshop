@@ -4,6 +4,8 @@ import { useQuery } from "@apollo/react-hooks";
 
 import ArenasQuery from "../../queries/Arenas";
 
+import Loading from "../../components/Loading";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -21,7 +23,7 @@ const ArenaList = ({ navigation }) => {
       },
   });
 
-  if (loading) { console.log("LOADING"); }
+  if (loading) return <Loading />;
   if (error) { console.log("ERROR"); }
   if (data) { console.log("GOT DAT DATA", data); }
 
